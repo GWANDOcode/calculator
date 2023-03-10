@@ -9,6 +9,14 @@ numberButtons.forEach(button => {
     button.addEventListener("click", () => {
         const dataValue = button.getAttribute("data-value");
 
+        if (dataValue === "C") {
+            if (currentNumber !== undefined) {
+                clearCurrent();
+            } else {
+
+            }
+        };
+
         if (dataValue !== "C" && dataValue !== ",") {
             if(currentNumber === undefined) {
                 currentNumber = dataValue;
@@ -16,7 +24,7 @@ numberButtons.forEach(button => {
             currentNumber = concatToNum(dataValue);
             }; 
         };
-        
+
         displayCurrent()
         console.log(currentNumber);
     });
@@ -26,6 +34,17 @@ numberButtons.forEach(button => {
 const concatToNum = function(num) {
     return `${currentNumber}${num}`;
 };  
+
+//clear current/all 
+const clearCurrent = function() {
+    currentNumber = undefined;
+    displayCurrent();
+};
+
+const clearAll = function () {
+    prevNumber = undefined;
+    clearCurrent();
+};
 
 //display functions
 const displayCurrent = function() {
