@@ -1,5 +1,23 @@
+const numberButtons = document.querySelectorAll(".number-button");
+const displayCalcCurrent = document.querySelector(".display-calc-current");
+const displayCalcPrev = document.querySelector(".display-calc-prev");
+
+let currentNumber;
+let prevNumber;
+
+numberButtons.forEach(button => {
+    button.addEventListener("click", () => {
+        
+    });
+});
 
 
+//display functions
+const displayHandler = function(current) {
+    displayCalcCurrent.textContent = current;
+};
+
+//calc functions 
 const addition = function(add1, add2) {
    return add1 + add2;
 };
