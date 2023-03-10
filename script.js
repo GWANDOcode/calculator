@@ -1,4 +1,4 @@
-const numberButtons = document.querySelectorAll(".number-button");
+const numberButtons = document.querySelector(".number-buttons").childNodes;
 const displayCalcCurrent = document.querySelector(".display-calc-current");
 const displayCalcPrev = document.querySelector(".display-calc-prev");
 
@@ -7,14 +7,29 @@ let prevNumber;
 
 numberButtons.forEach(button => {
     button.addEventListener("click", () => {
+        const dataValue = button.getAttribute("data-value");
+
+        if (dataValue !== "C" && dataValue !== ",") {
+            if(currentNumber === undefined) {
+                currentNumber = dataValue;
+            } else {
+            currentNumber = concatToNum(dataValue);
+            }; 
+        };
         
+        displayCurrent()
+        console.log(currentNumber);
     });
 });
 
+//String to number concat
+const concatToNum = function(num) {
+    return `${currentNumber}${num}`;
+};  
 
 //display functions
-const displayHandler = function(current) {
-    displayCalcCurrent.textContent = current;
+const displayCurrent = function() {
+    displayCalcCurrent.textContent = currentNumber;
 };
 
 //calc functions 
