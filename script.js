@@ -151,3 +151,37 @@ const mathHandler = function(operator, num1, num2) {
             return subtraction(num1, num2)
     }
 }
+
+
+/* -------------------------------------------------------------------------- */
+/*                                                                            */
+/* >     Display Current time and Date      <                                 */
+/*                                                                            */
+/* -------------------------------------------------------------------------- */
+const timeDisplay = document.querySelector(".time");
+const dateDisplay = document.querySelector(".date");
+const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun","Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+const todaysDate = new Date();
+const date = `${monthNames[todaysDate.getMonth()]} ${todaysDate.getDay()} ${todaysDate.getFullYear()}`;
+
+dateDisplay.textContent = date;
+
+const checkTimeTwoNum = function(time) {
+    if(time.toString().length === 1) {
+        return `0${time}`;
+    }
+    return time;
+}
+
+let currentTime = `${checkTimeTwoNum(todaysDate.getHours())}
+:${checkTimeTwoNum(todaysDate.getMinutes())}
+:${checkTimeTwoNum(todaysDate.getSeconds())}`;
+timeDisplay.textContent = currentTime;
+
+setInterval(() => {
+    const currentDate = new Date();
+    currentTime = `${checkTimeTwoNum(currentDate.getHours())}
+    :${checkTimeTwoNum(currentDate.getMinutes())}
+    :${checkTimeTwoNum(currentDate.getSeconds())}`;
+    timeDisplay.textContent = currentTime;
+}, 1000)
