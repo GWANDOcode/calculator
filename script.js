@@ -33,7 +33,6 @@ numberButtons.forEach(button => {
             } else {
             currentNumber = concatToNum(dataValue);
             }
-            currentNumber = parseFloat(currentNumber);
         }
 
         displayCurrent()
@@ -44,6 +43,8 @@ numberButtons.forEach(button => {
 operatorButtons.forEach(button => {
     button.addEventListener("click", () => {
         const dataValue = button.getAttribute("data-value");
+
+        currentNumber = parseFloat(currentNumber);
 
         if (dataValue !== "equals") {
             mathType = dataValue;
