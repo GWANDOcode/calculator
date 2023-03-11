@@ -1,10 +1,18 @@
 :root {
     --main-bg-color: #19fe79;
     --display-bg-color: #242424;
+    --display-font-size-current: 2rem;
+    --display-fomt-size-prev: 1.5rem;
+}
+
+@font-face {
+    font-family: "Commodore64";
+    src: url(./fonts/commodore_64/Commodore-64-v6.3.TTF);
 }
 
 * {
     box-sizing: border-box;
+    font-family: "Commodore64";
 }
 
 body {
@@ -40,8 +48,33 @@ main {
     height: 100px;
     background-color: var(--display-bg-color);
     color: var(--main-bg-color);
+    display: flex;
+    flex-direction: column;
 }
 
+.time-date {
+    height: 20px;
+}
+
+.display-calc {
+    height: 80px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    gap: 8px;
+    text-align: end;
+}
+
+.display-calc-prev {
+    font-size: var(--display-font-size-prev);
+    height: var(--display-font-size-prev);
+}
+
+.display-calc-current {
+    font-size: var(--display-font-size-current);
+    height: var(--display-font-size-current);
+}
 /* -------------------------------------------------------------------------- */
 /*                                                                            */
 /*            >     BUTTON AREA     <                                         */
@@ -67,11 +100,19 @@ main {
 }
 
 .button, 
-.operator {
+.operator,
+.hidden-buttons > div {
     width: 60px;
     height: 22px;
-    border: solid black 0.05rem;
     text-align: center;
+    padding-top: 5px;
+}
+
+.button:hover,
+.operator:hover {
+    background-color: var(--display-bg-color);
+    color: var(--main-bg-color);
+    cursor: pointer;
 }
 
 .hidden-buttons {
