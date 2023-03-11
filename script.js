@@ -6,12 +6,12 @@ const displayCalcPrev = document.querySelector(".display-calc-prev");
 let currentNumber;
 let prevNumber;
 let mathType;
-let result;
+let result = "";
 
 
 /* -------------------------------------------------------------------------- */
 /*                                                                            */
-/* >     eventlistener for numberbuttons to create string on current     <    */
+/* >     eventlistener for numberbuttons      <                               */
 /*                                                                            */
 /* -------------------------------------------------------------------------- */
 
@@ -46,16 +46,12 @@ operatorButtons.forEach(button => {
         const dataValue = button.getAttribute("data-value");
 
         if (dataValue !== "equals") {
-            if (dataValue === "division") {
-                mathType = "division";
-            } else if (dataValue === "multiplication") {
-                mathType = "multiplication";
-            } else if (dataValue === "addition") {
-                mathType = "addition";
-            } else if (dataValue === "subtraction") {
-                mathType = "subtraction";
+            mathType = dataValue;
+            if(result === "") {
+                prevNumber = currentNumber;
+            } else {
+                prevNumber = result;
             }
-            prevNumber = currentNumber;
             displayPrev();
             clearCurrent();
         }
@@ -63,6 +59,7 @@ operatorButtons.forEach(button => {
         if (dataValue === "equals") {
             result = mathHandler(mathType, prevNumber, currentNumber);
             prevNumber = "";
+            console.log(result);
             displayPrev();
             displayCurrent(result);
         }
@@ -90,10 +87,15 @@ const concatToNum = function(num) {
 const clearCurrent = function() {
     currentNumber = undefined;
     displayCurrent();
+    if (result !== "") {
+        prevNumber = result;
+        displayPrev();
+    }
 }
 
 const clearAll = function () {
     prevNumber = undefined;
+    result = "";
     clearCurrent();
     displayPrev();
 }
